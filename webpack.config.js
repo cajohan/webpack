@@ -1,4 +1,5 @@
 const path = require("path");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development", // "production" | "development" | "none"
@@ -12,6 +13,20 @@ module.exports = {
     path: path.resolve(__dirname, "dist"), // string
     // the target directory for all output files
     // must be an absolute path (use the Node.js path module)
-    filename: "[name].[contenthash].js", // string
+    filename: "index.[contenthash].js", // string
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "嘤嘤嘤",
+      template: "src/assets/index.html",
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
 };
